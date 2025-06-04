@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三扇门</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .door-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px; /* 添加间距 */
+        }
+        .door {
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .door:hover {
+            background-color: #ddd;
+        }
+        .door img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+        .door img.zoom {
+            transform: scale(2); /* 放大两倍 */
+            position: fixed; /* 固定位置 */
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            margin-top: -200px; /* 根据图片大小调整 */
+            margin-left: -200px; /* 根据图片大小调整 */
+            z-index: 1000; /* 确保图片在最上层 */
+            max-width: 80%; /* 防止图片超出屏幕 */
+            max-height: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="door-container">
+        <div class="door" onclick="window.open('https://www.bilibili.com/video/BV1JjZsYHEHE/?spm_id_from=333.337.search-card.all.click&vd_source=64a262f91541ca7ae2b6d1590b30dd88', '_blank')">
+            <img src="C:/Users/lg181/Desktop/face_exam/htmlplus/绘制印象派门画.png" alt="门1图片">
+            门1：外部网站
+        </div>
+        <div class="door" onclick="zoomImage('C:/Users/lg181/Desktop/face_exam/htmlplus/0ace15f1b45dca5e2375aa0e8905ab0e0c539db8.png')">
+            <img src="C:/Users/lg181/Desktop/face_exam/htmlplus/绘制印象派门画.png" alt="门2图片">
+            门2：本地图片
+        </div>
+        <div class="door" onclick="window.open('https://www.bilibili.com/video/BV1u4FYeeEWi/?spm_id_from=333.337.search-card.all.click&vd_source=64a262f91541ca7ae2b6d1590b30dd88', 'video')">
+            <img src="C:/Users/lg181/Desktop/face_exam/htmlplus/绘制印象派门画.png" alt="门3图片">
+            门3：外部网站
+        </div>
+    </div>
+    <div class="content-container" id="content-container">
+        <!-- 内容将在这里显示 -->
+    </div>
+    <script>
+        function zoomImage(path) {
+            var img = document.createElement('img');
+            img.src = path;
+            img.alt = '本地图片';
+            img.className = 'content zoom'; // 添加zoom类
+            img.onclick = function() {
+                this.classList.remove('zoom'); // 点击图片时取消放大效果
+            };
+            var contentContainer = document.getElementById('content-container');
+            contentContainer.innerHTML = ''; // 清空内容容器
+            contentContainer.appendChild(img); // 添加放大后的图片
+        }
+    </script>
+</body>
+</html>
